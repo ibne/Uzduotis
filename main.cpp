@@ -169,6 +169,8 @@ void Atsiliepimas::personaloAtsiliepimas() {
     }
     myfile << "Personalas: " << input << endl;
     myfile2 << "Personalas: " << input << endl;
+    myfile << "-----------------------" << endl;
+    myfile2 << "-----------------------" << endl;
 }
 
 void atsiliepimuSarasas() {
