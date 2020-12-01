@@ -24,8 +24,9 @@ void manoAtsiliepimas();
 int main() {
 
     ofstream myfile;
-    ofstream myfile2("atsiliepimas.txt");
+    ofstream myfile2;
     myfile.open ("atsiliepimai.txt", fstream::in | fstream::out | fstream::app);
+    myfile2.open ("atsiliepimas.txt", std::ofstream::out | std::ofstream::trunc);
     Person person;
     Atsiliepimas atsiliepimas;
     std::cout << "Sveiki, aciu, kad lanketes pas mus." << std::endl;
@@ -49,27 +50,13 @@ int main() {
 
     int firstinput = 1;
     int secnewinput = 1;
-    while (firstinput != 0) {
-        std::cout << "Apie ka pirma norite palikti atsiliepima? \n";
-        std::cout << "1. Kambario švara ir patogumus \n";
-        std::cout << "2. Pusryciu kokybe \n";
-        std::cout << "3. Personala \n";
-        std::cin >> firstinput;
+    std::cout << "Kambario svara ir patogumus \n";
+    atsiliepimas.kambarioAtsiliepimas();
+    std::cout << "Pusryciu kokybe \n";
+    atsiliepimas.pusryciuAtsiliepimas();
+    std::cout << "Personala \n";
+    atsiliepimas.personaloAtsiliepimas();
 
-        switch (firstinput) {
-            case 1:
-                atsiliepimas.kambarioAtsiliepimas();
-                break;
-            case 2:
-                atsiliepimas.pusryciuAtsiliepimas();
-                break;
-            case 3:
-                //phone.call();
-                break;
-            default:
-                std::cout << "Bloga ivestis pasirinkite nuo 1 iki 3";
-                break;
-        }
         std::cout << "Aciu Jusu atsiliepimas irasytas \n";
 
         while (secnewinput != 0) {
@@ -86,13 +73,13 @@ int main() {
                     manoAtsiliepimas();
                     break;
                 case 3:
-                    break;
+                    cout << "Aciu, kad apsistojote!";
+                    exit(0);
                 default:
                     std::cout << "Bloga ivestis pasirinkite nuo 1 iki 3";
                     break;
             }
         }
-    }
 }
 
 void manoAtsiliepimas() {
@@ -113,61 +100,75 @@ void manoAtsiliepimas() {
 
 
 void Atsiliepimas::kambarioAtsiliepimas () {
-    int input = 1;
+    ofstream myfile;
+    ofstream myfile2;
+    myfile.open ("atsiliepimai.txt", fstream::in | fstream::out | fstream::app);
+    myfile2.open ("atsiliepimas.txt", fstream::in | fstream::out | fstream::app);
+    int ivertinimas = 1;
         std::cout << "Ivertinkite kambario svara nuo 1 iki 5 \n";
-        std::cin >>  input;
-        if (input > 5 or input < 1 )
+        std::cin >>  ivertinimas;
+        if (ivertinimas > 5 or ivertinimas < 1 )
         {
             std::cout << "Neteisinga ivestis \n";
             std::cout << "Ivertinkite kambario svara nuo 1 iki 5 \n";
-            std::cin >>  input;
+            std::cin >>  ivertinimas;
         }
+        myfile << "Kambario svara: " << ivertinimas << endl;
+        myfile2 << "Kambario svara: " << ivertinimas << endl;
         std::cout << "Ivertinkite kambario patoguma nuo 1 iki 5 \n";
-        std::cin >>  input;
-        if (input > 5 or input < 1 )
+        std::cin >>  ivertinimas;
+        if (ivertinimas > 5 or ivertinimas < 1 )
         {
             std::cout << "Neteisinga ivestis \n";
             std::cout << "Ivertinkite kambario patoguma nuo 1 iki 5 \n";
-            std::cin >>  input;
+            std::cin >>  ivertinimas;
         }
+        myfile << "Kambario patogumas: " << ivertinimas << endl;
+        myfile2 << "Kambario patogumas: " << ivertinimas << endl;
 }
 void Atsiliepimas::pusryciuAtsiliepimas () {
+    ofstream myfile;
+    ofstream myfile2;
+    myfile.open ("atsiliepimai.txt", fstream::in | fstream::out | fstream::app);
+    myfile2.open ("atsiliepimas.txt", fstream::in | fstream::out | fstream::app);
     int input = 1;
-    std::cout << "Ivertinkite kambario svara nuo 1 iki 5 \n";
+    std::cout << "Ivertinkite pusryciu kokybe nuo 1 iki 5 \n";
     std::cin >>  input;
     if (input > 5 or input < 1 )
     {
         std::cout << "Neteisinga ivestis \n";
-        std::cout << "Ivertinkite kambario svara nuo 1 iki 5 \n";
+        std::cout << "Ivertinkite pusryciu kokybe nuo 1 iki 5 \n";
         std::cin >>  input;
     }
-    std::cout << "Ivertinkite kambario patoguma nuo 1 iki 5 \n";
+    myfile << "Pusryciu kokybe: " << input << endl;
+    myfile2 << "Pusryciu kokybe: " << input << endl;
+    std::cout << "Ivertinkite pusryciu pasirinkima(gausa) nuo 1 iki 5 \n";
     std::cin >>  input;
     if (input > 5 or input < 1 )
     {
-        std::cout << "Neteisinga ivestis \n";
-        std::cout << "Ivertinkite kambario patoguma nuo 1 iki 5 \n";
+        std::cout << "Pusryciu pasirinkimas \n";
+        std::cout << "Ivertinkite pusryciu pasirinkima(gausa) nuo 1 iki 5 \n";
         std::cin >>  input;
     }
+    myfile << "Pusryciu pasirinkima(gausa): " << input << endl;
+    myfile2 << "Pusryciu pasirinkima(gausa): " << input << endl;
 }
 void Atsiliepimas::personaloAtsiliepimas() {
+    ofstream myfile;
+    ofstream myfile2;
+    myfile.open ("atsiliepimai.txt", fstream::in | fstream::out | fstream::app);
+    myfile2.open ("atsiliepimas.txt", fstream::in | fstream::out | fstream::app);
     int input = 1;
-    std::cout << "Ivertinkite kambario svara nuo 1 iki 5 \n";
+    std::cout << "Ivertinkite personala nuo 1 iki 5 \n";
     std::cin >>  input;
     if (input > 5 or input < 1 )
     {
         std::cout << "Neteisinga ivestis \n";
-        std::cout << "Ivertinkite kambario svara nuo 1 iki 5 \n";
+        std::cout << "Ivertinkite personala nuo 1 iki 5 \n";
         std::cin >>  input;
     }
-    std::cout << "Ivertinkite kambario patoguma nuo 1 iki 5 \n";
-    std::cin >>  input;
-    if (input > 5 or input < 1 )
-    {
-        std::cout << "Neteisinga ivestis \n";
-        std::cout << "Ivertinkite kambario patoguma nuo 1 iki 5 \n";
-        std::cin >>  input;
-    }
+    myfile << "Personalas: " << input << endl;
+    myfile2 << "Personalas: " << input << endl;
 }
 
 void atsiliepimuSarasas() {
